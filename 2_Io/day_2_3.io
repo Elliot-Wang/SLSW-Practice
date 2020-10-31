@@ -9,3 +9,18 @@
  *  把矩阵写入文件，并从文件中读取矩阵。
  *  写一个程序，提供10次尝试机会，猜一个1～100之间的随机数。如果你愿意的话，可以在第一次猜测之后，提示猜大了还是猜小了。
  */
+
+list_2d := list(
+     list(3, 4, 5),
+     list(6, 7, 8)
+ )
+
+sum := method(l_2d,
+    total := 0
+    l_2d foreach(l,
+        l foreach(v, total = total + v)
+    )
+    return total
+)
+
+sum(list_2d) print
