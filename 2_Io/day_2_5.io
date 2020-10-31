@@ -12,3 +12,25 @@
  *  把矩阵写入文件，并从文件中读取矩阵。
  *  写一个程序，提供10次尝试机会，猜一个1～100之间的随机数。如果你愿意的话，可以在第一次猜测之后，提示猜大了还是猜小了。
  */
+
+List2d := List clone
+List2d dim := method(x, y,
+   l2d := List2d clone
+   for(i, 1, y,
+      l2d append(List setSize(x))
+   )
+   return l2d
+)
+
+List2d set := method(x, y, var,
+   self at(y-1) atPut(x-1, var)
+)
+List2d get := method(x, y,
+   return self at(y-1) at(x-1)
+)
+
+l2 := List2d dim(3, 4)
+
+l2 get(1, 1) println
+l2 set(1, 1, 34) 
+l2 println

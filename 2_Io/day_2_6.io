@@ -11,3 +11,56 @@
  *  把矩阵写入文件，并从文件中读取矩阵。
  *  写一个程序，提供10次尝试机会，猜一个1～100之间的随机数。如果你愿意的话，可以在第一次猜测之后，提示猜大了还是猜小了。
  */
+Matrix := List clone
+Matrix dim := method(x, y,
+   m := Matrix clone
+   self size := list(x, y)
+   for(i, 0, x-1,
+      m append(list())
+      for(j, 0, y-1,
+         m at(i) append(1)
+      )
+   )
+   return m
+)
+Matrix incre := method(
+   c := 0
+   x := self size at(0)
+   y := self size at(1)
+   for(i, 0, x-1,
+      for(j, 0, y-1,
+         self at(i) atPut(j, c);
+         c = c + 1
+      )
+   )
+)
+
+Matrix print := method(
+   self foreach(r, r foreach(e, e print; " " print); "\n" print)
+)
+
+Matrix set := method(x, y, var,
+   self at(x) atPut(y, var)
+)
+Matrix get := method(x, y,
+   return self at(x) at(y)
+)
+Matrix
+
+Matrix transpose := method(
+   m := Matrix dim(size at(1), size at(0))
+   for(i, 0, size at(0)-1,
+      for(j, 0, size at(1)-1,
+         m set(j, i, self get(i, j));
+      )
+   )
+   return m
+)
+
+m := Matrix dim(3, 3)
+m incre()
+// m set(1, 1, 3)
+m print
+"transpose" println
+m_t := m transpose
+m_t print

@@ -12,3 +12,25 @@
  *  写一个程序，提供10次尝试机会，猜一个1～100之间的随机数。如果你愿意的话，可以在第一次猜测之后，提示猜大了还是猜小了。
  */
 
+List myAverage := method(
+    if(self size == 0) then(return nil);
+    e := try(
+        sum := self sum
+    )
+    if(e) then(
+        e println;
+        return nil
+    )
+    return (self sum)/(self size)
+)
+
+l := list()
+l myAverage println
+
+l push(34)
+l push(30)
+l push(35)
+l myAverage println
+
+l push("char")
+l myAverage println
