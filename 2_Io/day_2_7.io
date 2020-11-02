@@ -9,6 +9,7 @@
  @  把矩阵写入文件，并从文件中读取矩阵。
  *  写一个程序，提供10次尝试机会，猜一个1～100之间的随机数。如果你愿意的话，可以在第一次猜测之后，提示猜大了还是猜小了。
  */
+# https://www.ybrikman.com/writing/2012/02/04/seven-languages-in-seven-weeks-io-day-2/
 
 Matrix := List clone
 Matrix dim := method(x, y,
@@ -46,18 +47,16 @@ Matrix get := method(x, y,
 )
 
 Matrix save := method(fname,
-    f := File with(fname);
-    f remove;
-    f openForUpdating;
-    // TODO method 'write' must be a Sequence, not a 'Number'
-    self foreach(r, r foreach(e, f write(e, ", "); f write("\n")));
+   File with(fname) open write(self serialized) close
 )
 
 Matrix load := method(fname,
-    f := File with(fname);
-    f openForReading
+   doRelativeFile(fname)
 )
 
-m := Matrix dim(4, 4)
-m incre
-m save("2_Io/matrix.txt")
+// m := Matrix dim(4, 4)
+// m incre
+// m save("2_Io/matrix.txt")
+// 可以保存，可是为什么读取会出错
+m := Matrix load("matrix.txt")
+m print

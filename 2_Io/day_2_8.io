@@ -13,8 +13,14 @@
  */
 
 guessNumber := method(
-   num := 26
+   num := Random value(100)
+   "Please input a number between 0 and 100." println
    for(i, 1, 10,
-      // TODO Io怎么输入？？
+      guess := File standardInput readLine("Enter your guess:") asNumber()
+      if(guess > num) then("smaller" println)
+      if(guess < num) then("bigger" println)
+      if((guess - num) abs < 1) then("Correct!" println;num println; return)
    )
+   "Sorry, you ran out of guesses." println
 )
+guessNumber()
